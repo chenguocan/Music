@@ -75,6 +75,9 @@ class Player{
         this.audio.src=this.songList[this.currentIndex].url
         console.log(this.songList[this.currentIndex])
         this.audio.play();
+        this.audio.onloadedmetadata=()=>{
+            this.$(".time-end").innerText=this.formateTime(this.audio.duration);
+        }
         this.renderSong();
     }
     renderSong(){
@@ -134,7 +137,6 @@ class Player{
                     lyricsArr.push([milliseconds, str])
                 })
             })
-
         lyricsArr.filter(line => line[1].trim() !== '').sort((v1, v2) => {
             if(v1[0] > v2[0]) {
                 return 1
@@ -162,6 +164,5 @@ class Player{
         this.$('.bar .progress').style.width = percent
         this.$('.time-start').innerText = this.formateTime(this.audio.currentTime)
     }
-
 }
 window.p=new Player("#player")

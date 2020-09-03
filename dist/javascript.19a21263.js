@@ -1288,16 +1288,23 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "playNextSong",
     value: function playNextSong() {
+      var _this3 = this;
+
       this.currentIndex = (this.songList.length + this.currentIndex + 1) % this.songList.length;
       this.audio.src = this.songList[this.currentIndex].url;
       console.log(this.songList[this.currentIndex]);
       this.audio.play();
+
+      this.audio.onloadedmetadata = function () {
+        _this3.$(".time-end").innerText = _this3.formateTime(_this3.audio.duration);
+      };
+
       this.renderSong();
     }
   }, {
     key: "renderSong",
     value: function renderSong() {
-      var _this3 = this;
+      var _this4 = this;
 
       var songObj = this.songList[this.currentIndex];
       this.$(".header h1").innerHTML = songObj.title;
@@ -1306,7 +1313,7 @@ var Player = /*#__PURE__*/function () {
       this.loadLyrics();
 
       this.audio.onloadedmetadata = function () {
-        _this3.$(".time-end").innerText = _this3.formateTime(_this3.audio.duration);
+        _this4.$(".time-end").innerText = _this4.formateTime(_this4.audio.duration);
       };
 
       this.loadLyrics();
@@ -1314,13 +1321,13 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "loadLyrics",
     value: function loadLyrics() {
-      var _this4 = this;
+      var _this5 = this;
 
       var url = this.songList[this.currentIndex].lyric;
       fetch(url).then(function (res) {
         return res.json();
       }).then(function (data) {
-        _this4.setLyrics(data.lrc.lyric);
+        _this5.setLyrics(data.lrc.lyric);
 
         window.lyrics = data.lrc.lyric;
       });
@@ -1436,7 +1443,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57566" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50972" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
