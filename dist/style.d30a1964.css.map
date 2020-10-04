@@ -1,1 +1,0 @@
-{"version":3,"sources":["src\\scss\\style.scss"],"names":[],"mappings":"AAEA,GACE","file":"style.d30a1964.css","sourceRoot":"..","sourcesContent":["$color:red;\r\n$color2:yellow;\r\nh1{\r\n  color:$color;\r\n\r\n}"]}

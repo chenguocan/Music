@@ -1,5 +1,7 @@
 import "./icons"
 import Hammer from "./Hammer.js"
+/*const $=selector=>document.querySelector(selector);
+const $$=selector=>document.querySelectorAll(selector);*/
 class Player {
     constructor(node) {
         this.root = typeof node === "string" ? document.querySelector(node) : node;
@@ -12,6 +14,7 @@ class Player {
         this.bind();
         this.lyricsArr = []
         this.lyricIndex = -1
+        //https://github.com/jirengu/data-mock/tree/master/huawei-music
     }
     start() {
         fetch('http://chenguocan.cn/Huawei_api/music-list.json')
